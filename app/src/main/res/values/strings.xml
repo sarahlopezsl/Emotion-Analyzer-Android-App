@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Lab1_Affectiva_Android</string>
+    <string name="sma_view">You have reached the SMA threshold</string>
+    <string name="time_view">You have reached the SMA thresholds using timestamps</string>
+    <string name="wma_view">You have reached the threshold using WMA</string>
+</resources>
