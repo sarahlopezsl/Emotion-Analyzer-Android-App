@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements CameraDetector.Ca
 
 
         //5
-        float first_time = 0;
         float avg_t = 0;
 
         //************ TIME **************
