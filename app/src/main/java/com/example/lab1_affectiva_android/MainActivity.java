@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements CameraDetector.Ca
     ArrayList<Float> queue = new ArrayList<>();
     ArrayList<Float> list_t = new ArrayList<>();
 
-    int counter_t = -1;
     int maxProcessingRate = 10;
 
     @Override
@@ -89,32 +88,33 @@ public class MainActivity extends AppCompatActivity implements CameraDetector.Ca
 
         //4
         float joy = face.emotions.getJoy();
-        float anger = face.emotions.getAnger();
-        float surprise = face.emotions.getSurprise();
+
 
 
         //5
+        float first_time = 0;
+        float avg_t = 0;
 
-        int time = (int)timeStamp;
+        //************ TIME **************
 
-        //******** TIME **************
-        if(list_t.size()==10 & time >counter_t){
-            counter_t++;
-            list_t.remove(0);
+        if (list_t.size()==0){
+            first_time = timeStamp;
             list_t.add(joy);
+        }else{
+            list_t.add(joy);
+            if((timeStamp-10)>=first_time){
+                avg_t = average(list_t);
+                first_time = timeStamp;
+            }
+        }
 
-            float avg_t = average(list_t);
-            if(avg_t>=40) {
+        if(avg_t>=40) {
                 time_label.setVisibility(View.VISIBLE);
             }
             else{
                 time_label.setVisibility(View.INVISIBLE);
             }
 
-        }else if (list_t.size()<=10 & time>counter_t){
-            list_t.add(joy);
-            counter_t++;
-        }
 
 
         //*********** 100 Data Points ***********
@@ -162,6 +162,10 @@ public class MainActivity extends AppCompatActivity implements CameraDetector.Ca
         return avg;
     }
 
+
+
+
+
     public float average (ArrayList <Float> queue){
 
         float total = 0;
@@ -176,7 +180,6 @@ public class MainActivity extends AppCompatActivity implements CameraDetector.Ca
         return average;
 
     }
-
 
 }
 
