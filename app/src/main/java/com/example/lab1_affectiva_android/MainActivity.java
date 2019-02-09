@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements CameraDetector.Ca
     TextView wma_label;
     ArrayList<Float> queue = new ArrayList<>();
     ArrayList<Float> list_t = new ArrayList<>();
+    float first_time = 0; 
 
     int maxProcessingRate = 10;
 
